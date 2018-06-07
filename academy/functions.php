@@ -83,6 +83,26 @@ if ( ! function_exists( 'academy_setup' ) ) :
 endif;
 add_action( 'after_setup_theme', 'academy_setup' );
 
+function academy_fonts_url() {
+	$fonts_url = '';
+
+	$libre_franklin = _x( 'on', 'Libre Franklin font: on or off', 'academy');
+
+	if('off' !== $libre_franklin ){
+		$font_families = array();
+
+		$font_families[] = 'Libre Franklin: 300, 300i, 400, 400i, 600, 600i, 800, 800i';
+
+		$query_args = array(
+			'family' => urlencode(implode('|', $font_families)),
+			'subset' => urlencode('latin, latin-ext'),
+		);
+
+		$fonts_url = add_query_arg($query_args, 	'https://fonts.googleapis.com/css?family=Oswald:400,500,700');
+		}
+
+	return esc_url_raw($fonts_url);
+}
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
  *
@@ -120,8 +140,8 @@ add_action( 'widgets_init', 'academy_widgets_init' );
  * Enqueue scripts and styles.
  */
 function academy_scripts() {
-	//Enqueue Google Fonts: Oswald - Open serif font - Accessibility for dyslexia sufferers 
-	wp_enqueue_style('academy-fonts', 'https://fonts.googleapis.com/css?family=Oswald:400,500,700');
+	//Enqueue Google Fonts: Oswald - Open serif font - Accessibility for dyslexia sufferers
+	wp_enqueue_style('academy-fonts', academy_fonts_url);
 
 	wp_enqueue_style( 'academy-style', get_stylesheet_uri() );
 
