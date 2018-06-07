@@ -120,6 +120,9 @@ add_action( 'widgets_init', 'academy_widgets_init' );
  * Enqueue scripts and styles.
  */
 function academy_scripts() {
+	//Enqueue Google Fonts: Oswald - Open serif font - Accessibility for dyslexia sufferers 
+	wp_enqueue_style('academy-fonts', 'https://fonts.googleapis.com/css?family=Oswald:400,500,700');
+
 	wp_enqueue_style( 'academy-style', get_stylesheet_uri() );
 
 	wp_enqueue_script( 'academy-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
@@ -158,4 +161,3 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
-
