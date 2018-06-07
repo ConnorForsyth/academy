@@ -83,7 +83,7 @@ if ( ! function_exists( 'academy_setup' ) ) :
 endif;
 add_action( 'after_setup_theme', 'academy_setup' );
 
-function academy_fonts_url() {
+function academy_fonts_url() { 
 	$fonts_url = '';
 
 	$libre_franklin = _x( 'on', 'Libre Franklin font: on or off', 'academy');
